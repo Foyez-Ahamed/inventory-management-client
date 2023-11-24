@@ -1,9 +1,10 @@
+import Navbar from "../pages/Shared/Navbar";
 
 
 const MainLayout = () => {
     return (
         <div>
-            <h1>This is main layout</h1>
+            <Navbar></Navbar>
         </div>
     );
 };
