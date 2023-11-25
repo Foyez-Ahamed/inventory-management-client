@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
 
@@ -14,16 +15,16 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
   } = useForm()
 
   const onSubmit = (data) => {
     userLogin(data.email, data.password)
-    .then(result => {
-        console.log(result.user);
+    .then(() => {
+        toast.success('Login successfully')
+        reset();
     })
-    .then(error => {
-        console.log(error);
-    })
+    .then()
   };
 
   return (

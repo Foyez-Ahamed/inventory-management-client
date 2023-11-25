@@ -2,8 +2,20 @@ import { Link, NavLink } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import logo from "../../assets/logo/logo.png"
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+
+   const {user, userLogout} = useAuth();
+
+   const handleLogout = () => {
+      userLogout()
+      .then(() => {
+        toast.success('Logged out successfully')
+      })
+      .catch();
+   }
 
     const navItems = (
         <>
@@ -34,14 +46,16 @@ const Navbar = () => {
             <li className="text-[16px] font-medium  ml-4">Watch Demo</li>
           </NavLink>
 
-          <NavLink
-            to="/register"
-            className={({ isActive, isPending }) =>
-              isActive ? "text-[#B68C5A]" : isPending ? "pending" : ""
-            }
-          >
-            <li className="text-[16px] font-medium  ml-4">Register</li>
-          </NavLink>
+         {
+           !user && <NavLink
+           to="/register"
+           className={({ isActive, isPending }) =>
+             isActive ? "text-[#B68C5A]" : isPending ? "pending" : ""
+           }
+         >
+           <li className="text-[16px] font-medium  ml-4">Register</li>
+         </NavLink>
+         }
 
     
           {/* {
@@ -100,18 +114,7 @@ const Navbar = () => {
   
           <div className="navbar-end">
 
-            <Link to='login'><button>Login</button></Link>
-
-            {/* <div className="mr-4">
-               <Link to='/dashboard/cart'>
-               <button className="flex">
-                 <FaCartShopping className="text-2xl"></FaCartShopping>
-                <div className="badge badge-secondary -mt-3">+{cart.length}</div>
-              </button>
-               </Link>
-            </div> */}
-  
-            {/* <div>
+            <div>
               {user?.email ? (
                 <>
                   <div className="dropdown dropdown-end">
@@ -143,13 +146,13 @@ const Navbar = () => {
                 <NavLink
                   to="/login"
                   className={({ isActive, isPending }) =>
-                    isActive ? "text-[#EEFF25]" : isPending ? "pending" : ""
+                    isActive ? "text-[#B68C5A]" : isPending ? "pending" : ""
                   }
                 >
-                  <button className="text-[16px] font-medium">SIGN IN</button>
+                  <button className="text-[16px] font-medium shadow-xl rounded-md px-4 py-1">Login</button>
                 </NavLink>
               )}
-            </div> */}
+            </div>
 
           </div>
         </div>
