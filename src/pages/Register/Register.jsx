@@ -7,13 +7,17 @@ import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import { getAuth, updateProfile } from "firebase/auth";
 import app from "../../config/firebase.config";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 const auth = getAuth(app);
 
 const Register = () => {
   const [showPassIcon, setShowPassIcon] = useState(false);
 
   const { userRegister } = useAuth();
-  
+
+  const axiosPublic = useAxiosPublic();
+
   const {
     register,
     handleSubmit,
@@ -23,16 +27,36 @@ const Register = () => {
   const onSubmit = (data) => {
    
     userRegister(data.email, data.password)
-    .then((result) => {
-        console.log(result.user);
+    .then(() => {
+
         updateProfile(auth.currentUser, {
             displayName: data.name,
             photoURL: data.photoUrl 
           })
           .then()
           .catch()
+
+        // user info // 
+        const userInfo = {
+            name : data.name,
+            email : data.email,
+            image : data.photoUrl
+        }
+        // user info // 
+
+        // send ta to sever to database //
+        axiosPublic.post('/api/v1/createUser', userInfo)
+        .then(res => {
+            console.log(res.data);
+            if(res.data.insertedId){
+                toast.success('Register Successfully')
+            }
+        })
+        // send ta to sever to database //
+
+
     })
-    .then();
+    .catch();
 
   };
 
