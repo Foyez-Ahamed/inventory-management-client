@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../pages/Shared/Footer";
 import Navbar from "../pages/Shared/Navbar";
+import { Toaster } from "react-hot-toast";
 
 
 const MainLayout = () => {
@@ -20,6 +21,8 @@ const MainLayout = () => {
              <div className="mt-5">
              {withoutNavFooter || <Footer></Footer>}
              </div>
+
+             <Toaster/>
 
         </div>
     );

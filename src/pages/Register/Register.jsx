@@ -47,7 +47,6 @@ const Register = () => {
         // send ta to sever to database //
         axiosPublic.post('/api/v1/createUser', userInfo)
         .then(res => {
-            console.log(res.data);
             if(res.data.insertedId){
                 toast.success('Register Successfully')
             }
