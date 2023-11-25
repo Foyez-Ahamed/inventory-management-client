@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
@@ -12,6 +12,11 @@ const Login = () => {
 
   const {userLogin} = useAuth();
 
+  const navigate = useNavigate();
+//   const location = useLocation();
+
+//   const from = location.state?.form?.pathname || '/';
+
   const {
     register,
     handleSubmit,
@@ -23,6 +28,8 @@ const Login = () => {
     .then(() => {
         toast.success('Login successfully')
         reset();
+        navigate('/createStore')
+        // navigate(from, {replace:true});
     })
     .then()
   };

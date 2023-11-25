@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import logo from "../../assets/logo/logo.png"
@@ -8,11 +8,17 @@ import toast from "react-hot-toast";
 const Navbar = () => {
 
    const {user, userLogout} = useAuth();
+   
+   const navigate = useNavigate();
+   const location = useLocation();
+
+   const from = location.state?.form?.pathname || '/';
 
    const handleLogout = () => {
       userLogout()
       .then(() => {
-        toast.success('Logged out successfully')
+        toast.success('Logged out successfully');
+        navigate(from, {replace:true});
       })
       .catch();
    }

@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -18,9 +18,15 @@ const Register = () => {
 
   const axiosPublic = useAxiosPublic();
 
+  const navigate = useNavigate();
+//   const location = useLocation();
+
+//   const from = location.state?.form?.pathname || '/';
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -48,7 +54,10 @@ const Register = () => {
         axiosPublic.post('/api/v1/createUser', userInfo)
         .then(res => {
             if(res.data.insertedId){
-                toast.success('Register Successfully')
+                toast.success('Register Successfully');
+                reset();
+                navigate('/createStore');
+                // navigate(from, {replace:true});
             }
         })
         // send ta to sever to database //

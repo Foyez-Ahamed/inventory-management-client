@@ -6,6 +6,7 @@ import WatchDemo from "../pages/WatchDemo/WatchDemo";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const Route = createBrowserRouter([
     {
@@ -20,7 +21,7 @@ const Route = createBrowserRouter([
 
             {
                 path: 'createStore',
-                element : <CreateStore></CreateStore>
+                element : <PrivateRoute><CreateStore></CreateStore></PrivateRoute>
             },
 
             {
