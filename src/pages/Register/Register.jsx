@@ -4,10 +4,16 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useAuth from "../../hooks/useAuth";
+import { getAuth, updateProfile } from "firebase/auth";
+import app from "../../config/firebase.config";
+const auth = getAuth(app);
 
 const Register = () => {
   const [showPassIcon, setShowPassIcon] = useState(false);
 
+  const { userRegister } = useAuth();
+  
   const {
     register,
     handleSubmit,
@@ -15,7 +21,19 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+   
+    userRegister(data.email, data.password)
+    .then((result) => {
+        console.log(result.user);
+        updateProfile(auth.currentUser, {
+            displayName: data.name,
+            photoURL: data.photoUrl 
+          })
+          .then()
+          .catch()
+    })
+    .then();
+
   };
 
   return (
@@ -103,8 +121,8 @@ const Register = () => {
                   )}
                   {errors.password?.type === "pattern" && (
                     <p className="text-red-500">
-                      password must have at least one capital letter and special
-                      character!
+                      password must have at least one capital letter a number and a special
+                      character !
                     </p>
                   )}
                 </div>
@@ -140,7 +158,7 @@ const Register = () => {
               <h1 className="font-bold"> Or Register with </h1>
 
               <SocialLogin></SocialLogin>
-              
+
             </div>
           </div>
         </div>

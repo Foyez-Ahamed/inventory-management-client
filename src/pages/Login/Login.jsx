@@ -3,10 +3,13 @@ import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
 
   const [showPassIcon, setShowPassIcon] = useState(false);
+
+  const {userLogin} = useAuth();
 
   const {
     register,
@@ -14,7 +17,13 @@ const Login = () => {
   } = useForm()
 
   const onSubmit = (data) => {
-    console.log(data);
+    userLogin(data.email, data.password)
+    .then(result => {
+        console.log(result.user);
+    })
+    .then(error => {
+        console.log(error);
+    })
   };
 
   return (
