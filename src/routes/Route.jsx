@@ -5,11 +5,13 @@ import CreateStore from "../pages/CreateStore/CreateStore";
 import WatchDemo from "../pages/WatchDemo/WatchDemo";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const Route = createBrowserRouter([
     {
         path: '/',
         element : <MainLayout></MainLayout>,
+        errorElement : <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

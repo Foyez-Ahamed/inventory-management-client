@@ -12,7 +12,7 @@ const Banner = () => {
     <div>
         <div className='mt-20 lg:mt-0'>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper rounded-md">
-          <SwiperSlide><img className=' h-[400px] lg:h-[100vh] w-full' src={banner1} alt="" /></SwiperSlide>
+          <SwiperSlide><img className=' h-[400px] lg:h-[100vh] w-full object-cover' src={banner1} alt="" /></SwiperSlide>
           <SwiperSlide><img className='h-[100vh] w-full' src={banner2} alt="" /></SwiperSlide>
           <SwiperSlide><img className='h-[100vh] w-full' src={banner3} alt="" /></SwiperSlide>
           <SwiperSlide><img className='h-[100vh] w-full' src={banner4} alt="" /></SwiperSlide>
