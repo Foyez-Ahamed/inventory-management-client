@@ -53,7 +53,7 @@ const Navbar = () => {
              isActive ? "text-[#B68C5A]" : isPending ? "pending" : ""
            }
          >
-           <li className="text-[16px] font-medium  ml-4">Registe</li>
+           <li className="text-[16px] font-medium  ml-4">Register</li>
          </NavLink>
          }
 
