@@ -17,7 +17,7 @@ const Navbar = () => {
           </NavLink>
     
           <NavLink
-            to="/contact"
+            to="/createStore"
             className={({ isActive, isPending }) =>
               isActive ? "text-[#B68C5A] " : isPending ? "pending" : ""
             }
@@ -26,7 +26,7 @@ const Navbar = () => {
           </NavLink>
     
           <NavLink
-            to="/menu"
+            to="/watchDemo"
             className={({ isActive, isPending }) =>
               isActive ? "text-[#B68C5A]" : isPending ? "pending" : ""
             }
@@ -35,7 +35,7 @@ const Navbar = () => {
           </NavLink>
 
           <NavLink
-            to="/menu"
+            to="/register"
             className={({ isActive, isPending }) =>
               isActive ? "text-[#B68C5A]" : isPending ? "pending" : ""
             }
