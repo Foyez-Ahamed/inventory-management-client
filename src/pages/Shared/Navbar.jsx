@@ -100,7 +100,7 @@ const Navbar = () => {
   
           <div className="navbar-end">
 
-            <button>Login</button>
+            <Link to='login'><button>Login</button></Link>
 
             {/* <div className="mr-4">
                <Link to='/dashboard/cart'>
