@@ -5,6 +5,7 @@ import { BsFillCollectionFill } from "react-icons/bs";
 import useAuth from "../hooks/useAuth";
 import { CiLogout } from "react-icons/ci";
 import toast, { Toaster } from "react-hot-toast";
+import Footer from "../pages/Shared/Footer";
 
 
 const DashboardLayout = () => {
@@ -114,6 +115,10 @@ const DashboardLayout = () => {
 
         <div className="flex-1 p-7">
           <Outlet></Outlet>
+
+          <div className="mt-10">
+          <Footer></Footer>
+          </div>
         </div>
       </section>
 
