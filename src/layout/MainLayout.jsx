@@ -12,7 +12,7 @@ const MainLayout = () => {
 
 
     return (
-        <div>
+        <div className='className="max-w-screen-xl mx-auto px-2 md:px-10 lg:px-10 lg:py-5'>
 
             {withoutNavFooter || <Navbar></Navbar>}
 

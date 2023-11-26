@@ -7,6 +7,12 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../layout/DashboardLayout";
+import ProductManagement from "../pages/Dashboard/ProductManagement/ProductManagement";
+import Offers from "../pages/Dashboard/Offers";
+import Payment from "../pages/Dashboard/Payment";
+import SalesCollection from "../pages/Dashboard/SalesCollection";
+import SalesSummary from "../pages/Dashboard/SalesSummary";
 
 const Route = createBrowserRouter([
     {
@@ -37,6 +43,37 @@ const Route = createBrowserRouter([
             {
                 path : 'login',
                 element : <Login></Login>
+            }
+        ]
+    },
+
+    {
+        path:'dashboard',
+        element : <DashboardLayout></DashboardLayout>,
+        children:[
+            {
+                path: 'productManagement',
+                element :<ProductManagement></ProductManagement>
+            },
+
+            {
+                path:'offers',
+                element : <Offers></Offers>
+            },
+
+            {
+                path : 'payment',
+                element : <Payment></Payment>
+            },
+
+            {
+                path : 'salesCollection',
+                element : <SalesCollection></SalesCollection>
+            },
+
+            {
+                path : 'salesSummary',
+                element : <SalesSummary></SalesSummary>
             }
         ]
     }

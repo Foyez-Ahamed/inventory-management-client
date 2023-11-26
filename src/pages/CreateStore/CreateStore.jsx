@@ -9,7 +9,19 @@ const CreateStore = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    
+    const shopInfo = {
+      
+       shopName : data.shopName,
+       shopLogo : data.shopLogo,
+       shopInfo : data.shopInfo,
+       location : data.shopLocation,
+       ownerName : data.name,
+       ownerEmail : data.email
+    }
+
+    console.log(shopInfo);
+
   };
 
   return (
