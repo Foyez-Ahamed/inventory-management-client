@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import Categories from "../Categories/Categories";
 import Faq from "../Faq/Faq";
 import Hero from "../Hero/Hero";
 
@@ -8,6 +9,10 @@ const Home = () => {
 
            <div className="mt-8 lg:mt-0">
              <Hero></Hero>
+           </div>
+
+           <div className="mt-8">
+            <Categories></Categories>
            </div>
 
            <div className="mt-10">
