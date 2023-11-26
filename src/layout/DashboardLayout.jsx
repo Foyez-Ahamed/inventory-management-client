@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth";
 import { CiLogout } from "react-icons/ci";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "../pages/Shared/Footer";
+import logo from "../../src/assets/logo/logo.png"
 
 
 const DashboardLayout = () => {
@@ -30,6 +31,10 @@ const DashboardLayout = () => {
 
       <section className="flex flex-col lg:flex-row justify-center gap-6">
         <div className="lg:w-64 min-h-screen bg-[#B68C5A] py-4">
+
+          <div className="flex justify-center items-center">
+            <img src={logo} className="w-[140px]" alt="" />
+          </div>
 
           <ul className="menu space-y-2 font-bold text-white">
 
