@@ -18,6 +18,7 @@ import SystemAdmin from "../pages/Dashboard/Admin/SystemAdmin";
 import ManageShop from "../pages/Dashboard/Admin/ManageShop";
 import AdminSalesSummary from "../pages/Dashboard/Admin/AdminSalesSummary";
 import AddProduct from "../pages/Dashboard/ProductManagement/AddProduct";
+import Subscription from "../pages/Dashboard/ProductManagement/Subscription";
 
 const Route = createBrowserRouter([
     {
@@ -104,6 +105,11 @@ const Route = createBrowserRouter([
             {
                 path : 'salesSummary',
                 element : <SalesSummary></SalesSummary>
+            },
+
+            {
+                path : 'subscription',
+                element : <Subscription></Subscription>
             }
         ]
     }

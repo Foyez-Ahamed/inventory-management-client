@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
 
 
 const image_hosting = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -15,6 +16,8 @@ const AddProduct = () => {
   const [manager, setManager] = useState({});
 
   const {user} = useAuth();
+
+  // const navigate = useNavigate();
 
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
@@ -73,6 +76,7 @@ const AddProduct = () => {
 
       axiosSecure.post('/api/v1/createProduct', productInfo)
       .then(res => {
+        console.log(res.data);
          if(res.data.insertedId) {
            axiosSecure.patch(`/api/v1/changeLimit/${productInfo.shopId}`)
            .then(res => {
@@ -93,9 +97,23 @@ const AddProduct = () => {
              }
            })
          }
+
+        //  else{
+        //   Swal.fire({
+        //     position: "top",
+        //     icon: "success",
+        //     title: "You already reach your product added limit ! Please subscription confirm then added product",
+        //     showConfirmButton: false,
+        //     timer: 1500
+        //   });
+
+        //   navigate('/dashboard/subscription')
+         
+        //  }
+
       })
       
-
+      
     }
 
   };
