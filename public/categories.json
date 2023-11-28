@@ -1,26 +1,21 @@
 [
     {
-      "image": "https://i.ibb.co/nBZvMtM/istockphoto-1293366109-612x612.jpg",
-      "name": "Fashion"
+      "image": "https://i.ibb.co/s9mZ77F/customer3.jpg",
+      "name": "Emily Johnson",
+      "details" : "Efficient and user-friendly inventory management system! It streamlined our operations, providing real-time insights, and significantly reducing errors in tracking stock levels.",
+      "rating" : 5
     },
     {
-      "image": "https://i.ibb.co/FYfmXcz/people-management-cover.jpg",
-      "name": "Management"
+      "image": "https://i.ibb.co/wyvJPzr/customer2.jpg",
+      "name": "Alex Rodriguez",
+      "details" : "Game-changer for our business! The inventory management system's automation features saved us time and resources, ensuring accurate stock counts and minimizing overstock or stockouts.",
+      "rating" : 4
     },
+
     {
-      "image": "https://i.ibb.co/JtqmKD5/male-shop-keeper-holding-promotional-sale-advertisement-placard-grocery-store-supermarket-vector-ill.jpg",
-      "name": "Sale"
-    },
-    {
-      "image": "https://i.ibb.co/4Mfp134/istockphoto-628560830-612x612.jpg",
-      "name": "Budget"
-    },
-    {
-        "image": "https://i.ibb.co/xgZ1bqZ/istockphoto-850982114-612x612.jpg",
-        "name": "Card"
-    },
-    {
-        "image": "https://i.ibb.co/8zgPdh2/download-1.png",
-        "name": "Category"
+      "image": "https://i.ibb.co/W0Q3CDr/customer1.jpg",
+      "name": "Sarah Patel",
+      "details" : "Reliable and scalable solution! The inventory management system adapted seamlessly to our growing business, offering robust control over inventory, enhancing order fulfillment, and improving overall organizational efficiency.",
+      "rating" : 4.5
     }
   ]

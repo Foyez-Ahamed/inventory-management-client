@@ -13,6 +13,7 @@ const Login = () => {
   const {userLogin} = useAuth();
 
   const navigate = useNavigate();
+
 //   const location = useLocation();
 
 //   const from = location.state?.form?.pathname || '/';
@@ -28,7 +29,7 @@ const Login = () => {
     .then(() => {
         toast.success('Login successfully')
         reset();
-        navigate('/createStore')
+        navigate('/dashboard')
         // navigate(from, {replace:true});
     })
     .then()

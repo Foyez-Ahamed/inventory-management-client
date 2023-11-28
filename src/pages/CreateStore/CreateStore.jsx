@@ -1,12 +1,16 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const CreateStore = () => {
 
   const {user} = useAuth();
 
-  const { register, handleSubmit } = useForm();
+  const axiosSecure = useAxiosSecure();
+
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     
@@ -17,10 +21,47 @@ const CreateStore = () => {
        shopInfo : data.shopInfo,
        location : data.shopLocation,
        ownerName : data.name,
-       ownerEmail : data.email
+       ownerEmail : data.email,
+       productsCount : 0
     }
 
-    console.log(shopInfo);
+    axiosSecure.post('/api/v1/createShop', shopInfo)
+    .then(res => {
+      if(res?.data?.insertedId){
+        const updateUserInfo = {
+          role : 'manager',
+          shopName : shopInfo.shopName,
+          shopLogo : shopInfo.shopLogo,
+          shopId : res?.data?.insertedId,
+        } 
+
+        axiosSecure.patch(`/api/v1/updateUserInfo/${user.email}`, updateUserInfo )
+        .then(res => {
+          if(res.data.modifiedCount > 0){
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: "Shop created successfully and you are manager now ! ",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+          
+        })
+
+      } else{
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "You already create a shop!",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+        reset();
+
+      }
+    })
 
   };
 
@@ -127,6 +168,7 @@ const CreateStore = () => {
           </div>
         </div>
       </section>
+      
     </div>
   );
 };

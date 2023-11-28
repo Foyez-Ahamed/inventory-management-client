@@ -4,21 +4,33 @@ import { MdDiscount, MdManageAccounts, MdPayment, MdSummarize } from "react-icon
 import { BsFillCollectionFill } from "react-icons/bs";
 import useAuth from "../hooks/useAuth";
 import { CiLogout } from "react-icons/ci";
-import toast, { Toaster } from "react-hot-toast";
 import Footer from "../pages/Shared/Footer";
 import logo from "../../src/assets/logo/logo.png"
+import Swal from "sweetalert2";
+import useAdmin from "../hooks/useAdmin";
+import useManager from "../hooks/useManager";
 
 
 const DashboardLayout = () => {
 
   const {userLogout} = useAuth();
 
+  const [isAdmin] = useAdmin();
+
+  const [isManager] = useManager();
+
   const navigate = useNavigate();
   
   const handleLogout = () => {
     userLogout()
     .then(() => {
-      toast.success('Logged out successfully');
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "User logged out successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
       navigate('/');
     })
     .catch();
@@ -27,8 +39,7 @@ const DashboardLayout = () => {
 
   return (
     <div>
-       <Toaster/>
-
+      
       <section className="flex flex-col lg:flex-row justify-center gap-6">
         <div className="lg:w-64 min-h-screen bg-[#B68C5A] py-4">
 
@@ -37,6 +48,66 @@ const DashboardLayout = () => {
           </div>
 
           <ul className="menu space-y-2 font-bold text-white">
+
+          {/* admin related route */}
+
+          {
+            isAdmin && <>
+            <li>
+              <NavLink
+               to="/dashboard/systemAdmin"
+               className={({ isActive, isPending }) =>
+               isActive ? "text-gray-800" : isPending ? "pending" : ""
+            }
+               >
+                {" "}
+                <MdManageAccounts className="text-xl"></MdManageAccounts> System Admin
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+               to="/dashboard/manageShop"
+               className={({ isActive, isPending }) =>
+               isActive ? "text-gray-800" : isPending ? "pending" : ""
+            }
+               >
+                {" "}
+                <MdManageAccounts className="text-xl"></MdManageAccounts> Manage Shop
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+               to="/dashboard/adminSalesSummary"
+               className={({ isActive, isPending }) =>
+               isActive ? "text-gray-800" : isPending ? "pending" : ""
+            }
+               >
+                {" "}
+                <MdManageAccounts className="text-xl"></MdManageAccounts> Sales Summary
+              </NavLink>
+            </li>
+            </>
+          }
+
+          {/* admin related route */}
+
+
+            {/* shop manager related route */}
+            {
+              isManager && <>
+              <li>
+              <NavLink
+               to="/dashboard/shopManager"
+               className={({ isActive, isPending }) =>
+               isActive ? "text-gray-800" : isPending ? "pending" : ""
+            }
+               >
+                {" "}
+                <MdManageAccounts className="text-xl"></MdManageAccounts> Shop Manager
+              </NavLink>
+            </li>
 
 
             <li>
@@ -94,6 +165,9 @@ const DashboardLayout = () => {
                 <MdSummarize></MdSummarize> Sales Summary
               </NavLink>
             </li>
+              </>
+            }
+            {/* shop manager related route */}
 
 
             <div className="divider text-white"></div>

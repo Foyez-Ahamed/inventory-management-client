@@ -13,6 +13,11 @@ import Offers from "../pages/Dashboard/Offers";
 import Payment from "../pages/Dashboard/Payment";
 import SalesCollection from "../pages/Dashboard/SalesCollection";
 import SalesSummary from "../pages/Dashboard/SalesSummary";
+import ShopManager from "../pages/Dashboard/ShopManager/ShopManager";
+import SystemAdmin from "../pages/Dashboard/Admin/SystemAdmin";
+import ManageShop from "../pages/Dashboard/Admin/ManageShop";
+import AdminSalesSummary from "../pages/Dashboard/Admin/AdminSalesSummary";
+import AddProduct from "../pages/Dashboard/ProductManagement/AddProduct";
 
 const Route = createBrowserRouter([
     {
@@ -51,9 +56,34 @@ const Route = createBrowserRouter([
         path:'dashboard',
         element : <DashboardLayout></DashboardLayout>,
         children:[
+
+            {
+                path: 'systemAdmin',
+                element : <SystemAdmin></SystemAdmin>
+            },
+
+            {
+                path : 'manageShop',
+                element : <ManageShop></ManageShop>
+            },
+
+            {
+                path: 'adminSalesSummary',
+                element : <AdminSalesSummary></AdminSalesSummary>
+            },
+
+            {
+                path :'shopManager',
+                element : <ShopManager></ShopManager>
+            },
             {
                 path: 'productManagement',
                 element :<ProductManagement></ProductManagement>
+            },
+
+            {
+                path :'addProduct',
+                element: <AddProduct></AddProduct>
             },
 
             {
