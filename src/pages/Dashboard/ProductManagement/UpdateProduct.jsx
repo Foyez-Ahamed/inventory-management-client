@@ -1,59 +1,38 @@
-import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-// import { useNavigate } from "react-router-dom";
+
 
 
 const image_hosting = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting}`;
 
-const AddProduct = () => {
-  
-  const [manager, setManager] = useState({});
+const UpdateProduct = () => {
 
-  const {user} = useAuth();
-
-  // const navigate = useNavigate();
+  const products = useLoaderData();
 
   const axiosPublic = useAxiosPublic();
+
   const axiosSecure = useAxiosSecure();
-  
-  useEffect(() => {
-     axiosSecure.get(`http://localhost:5000/api/v1/getUsers/${user?.email}`)
-     .then(res => {
-       setManager(res.data)
-     })
 
-  },[axiosSecure, user?.email])
-
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit} = useForm();
 
   const onSubmit = async (data) => {
+      // image upload to image bb then get url // 
+      const imageFile = {image : data.image[0]};
 
-     // image upload to image bb then get url // 
-     const imageFile = {image : data.image[0]};
+      const res = await axiosPublic.post(image_hosting_api, imageFile, {
+          headers: {
+              'content-type' : 'multipart/form-data'
+          }
+      })
 
-     const res = await axiosPublic.post(image_hosting_api, imageFile, {
-         headers: {
-             'content-type' : 'multipart/form-data'
-         }
-     })
+      if(res.data.success) {
 
-    //  console.log(res.data.success, res.data.data.display_url);
-
-    if(res.data.success) {
-
-      const buyingPrice = parseFloat(data.cost) / parseFloat(data.quantity);
-      const tax = (buyingPrice * 7.5) / 100;
-      const profit = (buyingPrice * parseFloat(data.profitMargin)) / 100 ;
-
-      const sellingPrice = buyingPrice + tax + profit;
-      
-      const productInfo = {
+        const productInfo = {
 
         productName : data.productName,
         productImage : res.data.data.display_url,
@@ -63,66 +42,33 @@ const AddProduct = () => {
         profitMargin : parseFloat(data.profitMargin),
         discount : parseFloat(data.discount),
         productDetails : data.details,
-        shopId : manager.shopId,
-        shopName : manager.shopName,
-        manager : manager.email,
-        productAddDate : new Date(),
-        saleCount : 0,
-        sellingPrice : sellingPrice
 
-      }
+        }
 
-      // console.log(productInfo);
-
-      axiosSecure.post('/api/v1/createProduct', productInfo)
-      .then(res => {
-        console.log(res.data);
-         if(res.data.insertedId) {
-           axiosSecure.patch(`/api/v1/changeLimit/${productInfo.shopId}`)
-           .then(res => {
-             if(res.data.modifiedCount > 0) {
-              axiosSecure.patch(`/api/v1/increaseProduct/${productInfo.shopId}`)
-              .then(res => {
-                 if(res.data.modifiedCount > 0){
-                  Swal.fire({
+        axiosSecure.patch(`/api/v1/updateProduct/${products._id}`, productInfo)
+        .then(res => {
+            if(res.data.modifiedCount > 0) {
+                Swal.fire({
                     position: "top",
                     icon: "success",
-                    title: "Product added successfully",
+                    title: "Product updated successfully",
                     showConfirmButton: false,
                     timer: 1500
                   });
-                 }
-                 reset();
-              })
-             }
-           })
-         }
+            }
+        })
+        
+      }
 
-        //  else{
-        //   Swal.fire({
-        //     position: "top",
-        //     icon: "success",
-        //     title: "You already reach your product added limit ! Please subscription confirm then added product",
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   });
+  }
 
-        //   navigate('/dashboard/subscription')
-         
-        //  }
+    
 
-      })
-      
-      
-    }
-
-  };
-
-  return (
-    <div>
+    return (
+        <div>
 
       <div className="mt-10 text-center font-bold text-3xl">
-        <h1>Add Product</h1>
+        <h1>Update Product</h1>
       </div>
 
       <section className="flex justify-center items-center w-full md:w-full shadow-xl rounded-xl p-3 mx-auto bg-slate-100 mt-10">
@@ -135,6 +81,7 @@ const AddProduct = () => {
                   <label>Product Name</label>
                   <input
                     type="text"
+                    defaultValue={products.productName}
                     {...register("productName")}
                     placeholder="Enter your product name"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -160,6 +107,7 @@ const AddProduct = () => {
                   <label> Product Quantity</label>
                   <input
                     type="text"
+                    defaultValue={products.productQuantity}
                     {...register("quantity")}
                     placeholder="Product Quantity"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -170,6 +118,7 @@ const AddProduct = () => {
                   <label>Product Location</label>
                   <input
                     type="text"
+                    defaultValue={products.location}
                     {...register("productLocation")}
                     placeholder="Product Location"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -182,6 +131,7 @@ const AddProduct = () => {
                   <label>Production Cost</label>
                   <input
                     type="text"
+                    defaultValue={products.productionCost}
                     {...register("cost")}
                     placeholder="Production cost"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -192,6 +142,7 @@ const AddProduct = () => {
                   <label>Profit Margin %</label>
                   <input
                     type="text"
+                    defaultValue={products.profitMargin}
                     {...register("profitMargin")}
                     placeholder="Profit margin"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -204,6 +155,7 @@ const AddProduct = () => {
                   <label>Discount</label>
                   <input
                     type="text"
+                    defaultValue={products.discount}
                     {...register("discount")}
                     placeholder="Discount"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -214,6 +166,7 @@ const AddProduct = () => {
                   <label>Product Details</label>
                   <textarea
                     name="details"
+                    defaultValue={products.productDetails}
                     {...register("details")}
                     className="textarea textarea-bordered mt-2  w-full md:w-[390px] lg:w-[390px]"
                     placeholder="Bio"
@@ -223,14 +176,14 @@ const AddProduct = () => {
 
 
               <button className=" mt-8 mb-6 w-full px-5 py-2 text-white font-bold rounded-md bg-[#B68C5A] hover:bg-[#111827] flex justify-center items-center gap-2">
-                Add Product
+                Update Product
               </button>
             </form>
           </div>
         </div>
       </section>
     </div>
-  );
+    );
 };
 
-export default AddProduct;
+export default UpdateProduct;

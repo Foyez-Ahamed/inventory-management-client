@@ -19,6 +19,7 @@ import ManageShop from "../pages/Dashboard/Admin/ManageShop";
 import AdminSalesSummary from "../pages/Dashboard/Admin/AdminSalesSummary";
 import AddProduct from "../pages/Dashboard/ProductManagement/AddProduct";
 import Subscription from "../pages/Dashboard/ProductManagement/Subscription";
+import UpdateProduct from "../pages/Dashboard/ProductManagement/UpdateProduct";
 
 const Route = createBrowserRouter([
     {
@@ -85,6 +86,12 @@ const Route = createBrowserRouter([
             {
                 path :'addProduct',
                 element: <AddProduct></AddProduct>
+            },
+
+            {
+                path : 'updateProduct/:id',
+                element : <UpdateProduct></UpdateProduct>,
+                loader : ({params}) => fetch(`http://localhost:5000/api/v1/getSingleProduct/${params.id}`)
             },
 
             {

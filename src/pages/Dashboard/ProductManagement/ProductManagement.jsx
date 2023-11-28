@@ -3,9 +3,8 @@ import useProducts from "../../../hooks/useProducts";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const ProductManagement = () => {
-  const [products] = useProducts();
 
-  // const [products, setProducts] = useState([]);
+  const [products] = useProducts();
 
   return (
     <div>
@@ -93,7 +92,7 @@ const ProductManagement = () => {
                     <td>{product.saleCount}</td>
 
                     <th>
-                      <Link to={`/dashboard/updateItems/${product._id}`}>
+                      <Link to={`/dashboard/updateProduct/${product._id}`}>
                         <button className="btn btn-ghost btn-xs">
                           <FaEdit className="text-xl text-[#BB8506]"></FaEdit>
                         </button>
