@@ -1,10 +1,55 @@
 import { Link } from "react-router-dom";
 import useProducts from "../../../hooks/useProducts";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ProductManagement = () => {
 
-  const [products] = useProducts();
+  const [products, refetch] = useProducts();
+
+  const axiosSecure = useAxiosSecure();
+
+  const handleDeleteProduct = id => {
+    
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Want to delete product",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosSecure.delete(`/api/v1/deleteProduct/${id}`)
+          .then(res => {
+            if(res.data.deletedCount > 0) {
+                axiosSecure.patch(`/api/v1/decreaseProduct/${products[0].shopId}`)
+                .then(res => {
+                    if(res.data.modifiedCount > 0) {
+
+                        axiosSecure.patch(`/api/v1/increaseLimit/${products[0].shopId}`)
+                        .then(res => {
+                            if(res.data.modifiedCount > 0){
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Product has been deleted.",
+                                    icon: "success"
+                                  });
+                                  refetch();
+                            }
+                        })
+                       
+                    }
+                })
+            }
+          })
+        }
+      });
+
+  }
+
 
   return (
     <div>
@@ -101,6 +146,7 @@ const ProductManagement = () => {
 
                     <th>
                       <button
+                       onClick={ () => handleDeleteProduct(product._id)}
                         className="btn btn-ghost btn-xs"
                       >
                         <FaTrashAlt className="text-xl text-[#BB8506]"></FaTrashAlt>
