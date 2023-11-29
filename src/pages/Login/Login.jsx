@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Login = () => {
 
@@ -12,11 +13,13 @@ const Login = () => {
 
   const {userLogin} = useAuth();
 
+  const axiosSecure = useAxiosSecure();
+
+
   const navigate = useNavigate();
 
-//   const location = useLocation();
+  const location = useLocation();
 
-//   const from = location.state?.form?.pathname || '/';
 
   const {
     register,
@@ -24,15 +27,36 @@ const Login = () => {
     reset,
   } = useForm()
 
-  const onSubmit = (data) => {
-    userLogin(data.email, data.password)
-    .then(() => {
-        toast.success('Login successfully')
-        reset();
-        navigate('/dashboard')
-        // navigate(from, {replace:true});
-    })
-    .then()
+  const onSubmit = async (data) => {
+
+    const email =  data.email 
+    const password = data.password
+
+    try{
+     
+      await userLogin(email, password)
+
+      const isManager = await axiosSecure.get(`/api/v1/user/manager/${email}`)
+      console.log(isManager);
+
+      reset();
+
+      navigate( location?.state ? location.state : isManager.data ? '/dashboard/shopManager' : '/createStore');
+
+      toast.success('Login successfully')
+
+    } catch(error){
+       console.log(error.message);
+    }
+
+    // userLogin(data.email, data.password)
+    // .then(() => {
+    //     toast.success('Login successfully')
+    //     reset();
+    //     navigate('/dashboard')
+    //     // navigate(from, {replace:true});
+    // })
+    // .then()
   };
 
   return (

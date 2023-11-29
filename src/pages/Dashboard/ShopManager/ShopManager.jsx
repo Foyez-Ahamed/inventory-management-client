@@ -5,9 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 const ShopManager = () => {
 
     const {user} = useAuth();
-
-    console.log(user);
-
+    
     return (
         <div>
 

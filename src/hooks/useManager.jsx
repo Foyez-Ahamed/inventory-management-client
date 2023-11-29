@@ -13,7 +13,7 @@ const useManager = () => {
         enabled: !loading,
         queryFn : async() => {
             const res = await axiosSecure.get(`/api/v1/user/manager/${user.email}`)
-            return res.data?.manager
+            return res.data
         }
     })
 
