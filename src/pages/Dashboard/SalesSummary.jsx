@@ -22,10 +22,9 @@ const SalesSummary = () => {
 
         const totalProfit = products?.reduce((total, product) => total + (product.saleCount * product.profitPerUnit), 0)
 
-        const totalProfitInt = totalProfit.toFixed(3)
-        setTotalProfit(totalProfit)
+        const totalProfitInt = totalProfit.toFixed(2)
 
-        console.log(totalProfitInt);
+        setTotalProfit(totalProfitInt)
 
     },[products])
 
@@ -58,8 +57,8 @@ const SalesSummary = () => {
         </div>
 
         <div className="stat">
-          <div className="stat-title">{totalProfit}</div>
-          <div className="stat-value text-secondary">{}</div>
+          <div className="stat-title">Total Profit</div>
+          <div className="stat-value text-secondary">{totalProfit}</div>
          
         </div>
 
