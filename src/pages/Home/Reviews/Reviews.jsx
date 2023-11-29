@@ -36,15 +36,25 @@ const Reviews = () => {
               <img src={review.image} alt="Shoes" />
             </figure>
             <div className="card-body ">
-              <p>
+              <p
+                data-aos="fade-down"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+              >
                 {" "}
                 <BsArrow90DegRight className="text-3xl"></BsArrow90DegRight>{" "}
                 {review.details}
               </p>
 
-              <Rating style={{ maxWidth: 120 }} value={review.rating} readOnly />
+              <Rating
+                style={{ maxWidth: 120 }}
+                value={review.rating}
+                readOnly
+              />
 
-              <Marquee><h2 className="card-title">{review.name}</h2></Marquee>
+              <Marquee>
+                <h2 className="card-title">{review.name}</h2>
+              </Marquee>
             </div>
           </div>
         ))}
