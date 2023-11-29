@@ -1,10 +1,17 @@
 import { FaCartArrowDown } from "react-icons/fa";
 import useProducts from "../../hooks/useProducts";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const SalesCollection = () => {
 
     const [products] = useProducts();
+
+    const axiosSecure = useAxiosSecure();
+
+    const { user } = useAuth();
 
     const [searchProduct, setSearchProduct] = useState([]);
 
@@ -20,6 +27,43 @@ const SalesCollection = () => {
         if(filter) {
             setSearchProduct(filter)
         }
+    }
+
+    const handleAddToCart = (id) => {
+      
+      const present = products?.find(product => product._id === id )
+
+      // console.log(present);
+
+
+       const addCartInfo = {
+         
+          productId : id,
+          productName : present?.productName,
+          productImage : present?.productImage,
+          quantity : present?.productQuantity,
+          discount : present?.discount,
+          sellingPrice : present?.sellingPrice,
+          manager : user?.email,
+          shopId : products[0].shopId
+
+
+       }
+
+       axiosSecure.post('/api/v1/createCarts', addCartInfo)
+       .then(res => {
+        console.log(res.data);
+        if(res.data.insertedId) {
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Product added to cart successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+       })
+
     }
 
   return (
@@ -137,7 +181,7 @@ const SalesCollection = () => {
 
                           
                           <th>
-                            <button> <FaCartArrowDown className="text-xl text-[#BB8506]"></FaCartArrowDown> </button>
+                            <button onClick={() => handleAddToCart(product._id)}> <FaCartArrowDown className="text-xl text-[#BB8506]"></FaCartArrowDown> </button>
                           </th>
                         </tr>
                       ))

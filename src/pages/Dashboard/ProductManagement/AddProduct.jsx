@@ -80,10 +80,10 @@ const AddProduct = () => {
          if(res.data.insertedId) {
            axiosSecure.patch(`/api/v1/changeLimit/${productInfo.shopId}`)
            .then(res => {
-             if(res.data.modifiedCount > 0) {
+             if(res.data.modifiedCount) {
               axiosSecure.patch(`/api/v1/increaseProduct/${productInfo.shopId}`)
               .then(res => {
-                 if(res.data.modifiedCount > 0){
+                 if(res.data.modifiedCount){
                   Swal.fire({
                     position: "top",
                     icon: "success",
@@ -98,18 +98,16 @@ const AddProduct = () => {
            })
          }
 
-        //  else{
-        //   Swal.fire({
-        //     position: "top",
-        //     icon: "success",
-        //     title: "You already reach your product added limit ! Please subscription confirm then added product",
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   });
+         else{
+          Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "You already reach your product added limit ! Please subscription confirm then added product",
+            showConfirmButton: false,
+            timer: 1500
+          });
 
-        //   navigate('/dashboard/subscription')
-         
-        //  }
+         }
 
       })
       
