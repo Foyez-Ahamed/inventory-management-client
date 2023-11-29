@@ -32,6 +32,7 @@ const SalesSummary = () => {
  
   return (
     <div>
+
       <div className="text-center">
         <Marquee>
           {" "}
@@ -73,6 +74,46 @@ const SalesSummary = () => {
           <div className="stat-desc text-secondary">{user?.displayName}</div>
         </div>
       </div>
+
+
+      <div className="text-center mt-16">
+        <Marquee>
+          {" "}
+          <h1 className="text-[#B68C5A] text-xl font-bold uppercase">
+            {" "}
+            See Sales History{" "}
+          </h1>
+        </Marquee>
+      </div>
+
+
+      <div className="mt-10">
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead className="bg-[#BB8506] text-white font-bold">
+                <tr>
+                  <th>Product Name</th>
+                  <th>Selling Date</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                        {sales?.map((sale, saleIndex) => (
+                            sale.productName.map((product, productIndex) => (
+                                <tr key={`${saleIndex}-${productIndex}`} className={`${productIndex === sale.productName.length - 1 ? '' : 'border-gray-300'}`}>
+                                    <td>
+                                        {product}
+                                    </td>
+                                    <td>{sale.date}</td> 
+                                </tr>
+                            ))
+                        ))}
+                    </tbody>
+
+            </table>
+          </div>
+        </div>
     </div>
   );
 };
