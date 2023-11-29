@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import Marquee from "react-fast-marquee";
 
 const SalesCollection = () => {
 
@@ -82,7 +83,10 @@ const SalesCollection = () => {
 
       <section className="mt-8">
         <div>
-          <h1 className="text-[18px] font-bold">All Shop Products</h1>
+        <Marquee>
+          {" "}
+          <h1 className="text-[#B68C5A] text-xl font-bold uppercase"> all shop products </h1>
+        </Marquee>
         </div>
 
         <div className="mt-10">

@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 
@@ -17,7 +18,7 @@ const AddProduct = () => {
 
   const {user} = useAuth();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
@@ -52,6 +53,8 @@ const AddProduct = () => {
       const profit = (buyingPrice * parseFloat(data.profitMargin)) / 100 ;
 
       const sellingPrice = buyingPrice + tax + profit;
+
+      const profitPerUnit = sellingPrice - buyingPrice
       
       const productInfo = {
 
@@ -69,6 +72,7 @@ const AddProduct = () => {
         productAddDate : new Date(),
         saleCount : 0,
         sellingPrice : sellingPrice,
+        profitPerUnit : profitPerUnit
 
       }
 
@@ -106,6 +110,9 @@ const AddProduct = () => {
             showConfirmButton: false,
             timer: 1500
           });
+
+          reset();
+          navigate('/dashboard/payment')
 
          }
 

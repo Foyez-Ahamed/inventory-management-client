@@ -93,7 +93,7 @@ const UpdateProduct = () => {
                 <label>Product Image</label>   
                 <input
                   type="file"
-                  {...register("image", {required:true})}
+                  {...register("image")}
                   className="file-input file-input-ghost w-full max-w-xs"
                 />
                 </div>

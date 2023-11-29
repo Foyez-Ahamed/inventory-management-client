@@ -3,12 +3,15 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CreateStore = () => {
 
   const {user} = useAuth();
 
   const axiosSecure = useAxiosSecure();
+
+  const navigate = useNavigate();
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -46,19 +49,22 @@ const CreateStore = () => {
               timer: 1500
             });
           }
+          reset();
+          navigate('/dashboard/shopManager')
           
         })
 
       } else{
         Swal.fire({
           position: "top",
-          icon: "success",
+          icon: "error",
           title: "You already create a shop!",
           showConfirmButton: false,
           timer: 1500
         });
 
         reset();
+        navigate('/dashboard/shopManager')
 
       }
     })
