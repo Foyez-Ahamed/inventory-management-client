@@ -20,6 +20,7 @@ import AdminSalesSummary from "../pages/Dashboard/Admin/AdminSalesSummary";
 import AddProduct from "../pages/Dashboard/ProductManagement/AddProduct";
 import Subscription from "../pages/Dashboard/ProductManagement/Subscription";
 import UpdateProduct from "../pages/Dashboard/ProductManagement/UpdateProduct";
+import Checkout from "../pages/Dashboard/ProductManagement/Checkout";
 
 const Route = createBrowserRouter([
     {
@@ -92,6 +93,13 @@ const Route = createBrowserRouter([
                 path : 'updateProduct/:id',
                 element : <UpdateProduct></UpdateProduct>,
                 loader : ({params}) => fetch(`http://localhost:5000/api/v1/getSingleProduct/${params.id}`)
+            },
+
+
+            {
+                path : 'checkout',
+                element : <Checkout></Checkout>
+                
             },
 
             {

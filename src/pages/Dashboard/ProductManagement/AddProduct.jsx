@@ -68,7 +68,7 @@ const AddProduct = () => {
         manager : manager.email,
         productAddDate : new Date(),
         saleCount : 0,
-        sellingPrice : sellingPrice
+        sellingPrice : sellingPrice,
 
       }
 

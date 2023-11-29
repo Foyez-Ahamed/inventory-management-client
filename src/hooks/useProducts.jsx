@@ -8,7 +8,7 @@ const useProducts = () => {
     const {user} = useAuth();
 
     const { data : products = [], refetch } = useQuery({
-        queryKey : ['products'],
+        queryKey : ['products', user?.email],
         enabled : !!user?.email,
         queryFn : async() => {
             const res = await axiosSecure.get(`/api/v1/getProducts/${user?.email}`)

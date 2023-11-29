@@ -4,6 +4,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const SalesCollection = () => {
 
@@ -45,14 +46,14 @@ const SalesCollection = () => {
           discount : present?.discount,
           sellingPrice : present?.sellingPrice,
           manager : user?.email,
-          shopId : products[0].shopId
+          shopId : products[0].shopId,
+          saleCount : present?.saleCount
 
 
        }
 
        axiosSecure.post('/api/v1/createCarts', addCartInfo)
        .then(res => {
-        console.log(res.data);
         if(res.data.insertedId) {
           Swal.fire({
             position: "top",
@@ -190,6 +191,10 @@ const SalesCollection = () => {
               </tbody>
             </table>
           </div>
+        </div>
+
+        <div className="flex justify-end mt-6">
+        <Link to='/dashboard/checkout'>  <button className="px-6 py-2 rounded-md bg-[#B68C5A]  text-white font-bold ">Proceed Checkout</button></Link>
         </div>
       </section>
     
