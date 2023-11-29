@@ -47,15 +47,7 @@ const Login = () => {
     } catch(error){
        console.log(error.message);
     }
-
-    // userLogin(data.email, data.password)
-    // .then(() => {
-    //     toast.success('Login successfully')
-    //     reset();
-    //     navigate('/dashboard')
-    //     // navigate(from, {replace:true});
-    // })
-    // .then()
+    
   };
 
   return (

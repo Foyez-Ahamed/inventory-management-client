@@ -158,6 +158,7 @@ const ProductManagement = () => {
             </table>
           </div>
         </div>
+        
       </section>
     </div>
   );

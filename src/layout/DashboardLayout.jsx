@@ -7,6 +7,7 @@ import {
   MdSummarize,
 } from "react-icons/md";
 import { BsFillCollectionFill } from "react-icons/bs";
+import { FaShop } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import { CiLogout } from "react-icons/ci";
 import Footer from "../pages/Shared/Footer";
@@ -78,8 +79,8 @@ const DashboardLayout = () => {
                     }
                   >
                     {" "}
-                    <MdManageAccounts className="text-xl"></MdManageAccounts>{" "}
-                    Manage Shop
+                    {" "}
+                    <FaShop></FaShop> Manage Shop
                   </NavLink>
                 </li>
 
@@ -91,7 +92,7 @@ const DashboardLayout = () => {
                     }
                   >
                     {" "}
-                    <MdManageAccounts className="text-xl"></MdManageAccounts>{" "}
+                    <MdSummarize></MdSummarize>{" "}
                     Sales Summary
                   </NavLink>
                 </li>
