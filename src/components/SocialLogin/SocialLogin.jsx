@@ -3,45 +3,48 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 // import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
 const SocialLogin = () => {
 
     const axiosPublic = useAxiosPublic();
 
+    const axiosSecure = useAxiosSecure();
+
     const {googleLogin} = useAuth();
 
     const navigate = useNavigate();
-    // const location = useLocation();
 
-    // const from = location.state?.from?.pathname || '/';
+    const location = useLocation();
 
-    const handleGoogleLogin = () => {
+    const handleGoogleLogin = async () => {
 
-        googleLogin()
-        .then(result => {
+        try {
 
-            const userInfo = {
+         const result = await googleLogin()
 
-                name : result.user?.displayName,
-                email : result.user?.email,
-                image: result.user?.photoURL
+         const userInfo = {
 
-            }
+          name : result.user?.displayName,
+          email : result.user?.email,
+          image: result.user?.photoURL
+      }
 
-            axiosPublic.post('/api/v1/createUser', userInfo)
-            .then(res => {
-                console.log(res.data);
-                if(res.data.insertedId){
-                    console.log('user added to the database');
-                    toast.success('Successfully sign up');
-                    navigate('/createStore')
-                    // navigate(from, {replace:true});
-                }
-            })
+      const isManager = await axiosSecure.get(`/api/v1/user/manager/${userInfo?.email}`)
 
-        })
-        .then();
+      axiosPublic.post('/api/v1/createUser', userInfo)
+      .then(res => {
+          console.log(res.data);
+      })
+
+      navigate( location?.state ? location.state : isManager.data ? '/dashboard/shopManager' : '/createStore');
+
+      toast.success('Login successfully')
+         
+        } catch(error) {
+          console.log(error);
+        }
 
     }
 

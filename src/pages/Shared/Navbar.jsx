@@ -124,7 +124,7 @@ const Navbar = () => {
 
         <div className="navbar-end">
           <div>
-            {user?.email ? (
+            { user? (
               <>
                 <div className="dropdown dropdown-end">
                   <label
@@ -132,7 +132,7 @@ const Navbar = () => {
                     className="btn btn-ghost btn-circle avatar"
                   >
                     <div className="w-10 rounded-full">
-                      <img src={user.photoURL} />
+                      <img src={user?.photoURL} />
                     </div>
                   </label>
                   <ul
@@ -140,10 +140,10 @@ const Navbar = () => {
                     className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content text-black bg-base-100 rounded-box w-52"
                   >
                     <li>
-                      <a className="justify-between">{user.displayName}</a>
+                      <a className="justify-between">{user?.displayName}</a>
                     </li>
                     <li>
-                      <a>{user.email}</a>
+                      <a>{user?.email}</a>
                     </li>
                     <li>
                       <a onClick={handleLogout}>Logout</a>

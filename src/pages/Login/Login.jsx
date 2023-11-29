@@ -37,8 +37,7 @@ const Login = () => {
       await userLogin(email, password)
 
       const isManager = await axiosSecure.get(`/api/v1/user/manager/${email}`)
-      console.log(isManager);
-
+     
       reset();
 
       navigate( location?.state ? location.state : isManager.data ? '/dashboard/shopManager' : '/createStore');
