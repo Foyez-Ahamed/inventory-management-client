@@ -127,7 +127,7 @@ const AddProduct = () => {
     <div>
 
       <div className="mt-10 text-center font-bold text-3xl">
-        <h1>Add Product</h1>
+        <h1>Add Produt</h1>
       </div>
 
       <section className="flex justify-center items-center w-full md:w-full shadow-xl rounded-xl p-3 mx-auto bg-slate-100 mt-10">
