@@ -11,6 +11,8 @@ const Login = () => {
 
   const [showPassIcon, setShowPassIcon] = useState(false);
 
+  const [error, setError] = useState(null);
+
   const {userLogin} = useAuth();
 
   const axiosSecure = useAxiosSecure();
@@ -46,6 +48,7 @@ const Login = () => {
 
     } catch(error){
        console.log(error.message);
+       setError('Invalid email or password')
     }
     
   };
@@ -83,6 +86,7 @@ const Login = () => {
                     name="password"
                     className="mt-4 input  w-full md:w-[390px] lg:w-[390px]"
                   />
+                  {error && <p style={{ color: 'red' }}>{error}</p>}
                 </div>
                 <span
                   onClick={() => setShowPassIcon(!showPassIcon)}
