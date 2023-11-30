@@ -23,6 +23,8 @@ import UpdateProduct from "../pages/Dashboard/ProductManagement/UpdateProduct";
 import Checkout from "../pages/Dashboard/ProductManagement/Checkout";
 import AuthorizationErrorPage from "../pages/ErrorPage/AuthorizationErrorPage";
 import AmPrivateRoute from "./AmPrivateRoute";
+import AdminPrivateRoute from "./AdminPrivateRoute";
+import ManagerPrivateRoute from "./ManagerPrivateRoute";
 
 const Route = createBrowserRouter([
     {
@@ -70,69 +72,69 @@ const Route = createBrowserRouter([
 
             {
                 path: 'systemAdmin',
-                element : <SystemAdmin></SystemAdmin>
+                element : <AdminPrivateRoute><SystemAdmin></SystemAdmin></AdminPrivateRoute>
             },
 
             {
                 path : 'manageShop',
-                element : <ManageShop></ManageShop>
+                element : <AdminPrivateRoute><ManageShop></ManageShop></AdminPrivateRoute>
             },
 
             {
                 path: 'adminSalesSummary',
-                element : <AdminSalesSummary></AdminSalesSummary>
+                element : <AdminPrivateRoute><AdminSalesSummary></AdminSalesSummary></AdminPrivateRoute>
             },
 
             {
                 path :'shopManager',
-                element : <ShopManager></ShopManager>
+                element : <ManagerPrivateRoute><ShopManager></ShopManager></ManagerPrivateRoute>
             },
             {
                 path: 'productManagement',
-                element :<ProductManagement></ProductManagement>
+                element : <ManagerPrivateRoute><ProductManagement></ProductManagement></ManagerPrivateRoute>
             },
 
             {
                 path :'addProduct',
-                element: <AddProduct></AddProduct>
+                element: <ManagerPrivateRoute><AddProduct></AddProduct></ManagerPrivateRoute>
             },
 
             {
                 path : 'updateProduct/:id',
-                element : <UpdateProduct></UpdateProduct>,
+                element : <ManagerPrivateRoute><UpdateProduct></UpdateProduct></ManagerPrivateRoute>,
                 loader : ({params}) => fetch(`http://localhost:5000/api/v1/getSingleProduct/${params.id}`)
             },
 
 
             {
                 path : 'checkout',
-                element : <Checkout></Checkout>
+                element : <ManagerPrivateRoute><Checkout></Checkout></ManagerPrivateRoute>
                 
             },
 
             {
                 path:'offers',
-                element : <Offers></Offers>
+                element : <ManagerPrivateRoute><Offers></Offers></ManagerPrivateRoute>
             },
 
             {
                 path : 'payment',
-                element : <Payment></Payment>
+                element : <ManagerPrivateRoute><Payment></Payment></ManagerPrivateRoute>
             },
 
             {
                 path : 'salesCollection',
-                element : <SalesCollection></SalesCollection>
+                element : <ManagerPrivateRoute><SalesCollection></SalesCollection></ManagerPrivateRoute>
             },
 
             {
                 path : 'salesSummary',
-                element : <SalesSummary></SalesSummary>
+                element : <ManagerPrivateRoute><SalesSummary></SalesSummary></ManagerPrivateRoute>
             },
 
             {
                 path : 'subscription',
-                element : <Subscription></Subscription>
+                element : <ManagerPrivateRoute><Subscription></Subscription></ManagerPrivateRoute>
             }
         ]
     }
