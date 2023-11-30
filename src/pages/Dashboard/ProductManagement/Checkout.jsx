@@ -4,11 +4,18 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCarts from "../../../hooks/useCarts";
 import Marquee from "react-fast-marquee";
 import Swal from "sweetalert2";
+import { useReactToPrint } from "react-to-print";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [carts, refetch] = useCarts();
 
   const { user } = useAuth();
+
+  const compoToPdf = useRef()
+
+  const navigate = useNavigate();
 
   const [isDate, setIsDate] = useState(false);
   const [date, setDate] = useState("");
@@ -16,7 +23,17 @@ const Checkout = () => {
 
   const axiosSecure = useAxiosSecure();
 
+  const generatePdf = useReactToPrint({
+    content:()=>compoToPdf.current,
+    documentTitle:'checkout.pdf',
+    onAfterPrint:()=>{
+        navigate('/dashboard/salesSummary')
+    }  
+})
+
   const handleGetPaid = () => {
+
+    
     setIsDate(true);
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -49,7 +66,7 @@ const Checkout = () => {
           axiosSecure
             .patch(`/api/v1/increaseSalesCount/${cart?.productId}`)
             .then((res) => {
-             
+              generatePdf()
               if(res.data.modifiedCount) {
                 Swal.fire({
                     position: "top",
@@ -84,7 +101,7 @@ const Checkout = () => {
       )}
 
       <div className="mt-10">
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto" ref={compoToPdf} style={{width:'100%'}}>
           <table className="table">
             {/* head */}
             <thead className="bg-[#BB8506] text-white font-bold">
