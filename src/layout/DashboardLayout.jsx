@@ -6,6 +6,7 @@ import {
   MdPayment,
   MdSummarize,
 } from "react-icons/md";
+import { FaUserShield } from "react-icons/fa";
 import { BsFillCollectionFill } from "react-icons/bs";
 import { FaShop } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
@@ -96,6 +97,20 @@ const DashboardLayout = () => {
                     Sales Summary
                   </NavLink>
                 </li>
+
+                <li>
+                  <NavLink
+                    to="/dashboard/allUsers"
+                    className={({ isActive, isPending }) =>
+                      isActive ? "text-gray-800" : isPending ? "pending" : ""
+                    }
+                  >
+                    {" "}
+                    <FaUserShield></FaUserShield>{" "}
+                    All Users
+                  </NavLink>
+                </li>
+
               </>
             )}
 

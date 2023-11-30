@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
@@ -17,6 +17,8 @@ const UpdateProduct = () => {
   const axiosPublic = useAxiosPublic();
 
   const axiosSecure = useAxiosSecure();
+
+  const navigate = useNavigate();
 
   const { register, handleSubmit} = useForm();
 
@@ -55,6 +57,8 @@ const UpdateProduct = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+
+                  navigate('/dashboard/productManagement')
             }
         })
         
@@ -81,7 +85,7 @@ const UpdateProduct = () => {
                   <label>Product Name</label>
                   <input
                     type="text"
-                    defaultValue={products.productName}
+                    defaultValue={products?.productName}
                     {...register("productName")}
                     placeholder="Enter your product name"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -107,7 +111,7 @@ const UpdateProduct = () => {
                   <label> Product Quantity</label>
                   <input
                     type="text"
-                    defaultValue={products.productQuantity}
+                    defaultValue={products?.productQuantity}
                     {...register("quantity")}
                     placeholder="Product Quantity"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -118,7 +122,7 @@ const UpdateProduct = () => {
                   <label>Product Location</label>
                   <input
                     type="text"
-                    defaultValue={products.location}
+                    defaultValue={products?.location}
                     {...register("productLocation")}
                     placeholder="Product Location"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -131,7 +135,7 @@ const UpdateProduct = () => {
                   <label>Production Cost</label>
                   <input
                     type="text"
-                    defaultValue={products.productionCost}
+                    defaultValue={products?.productionCost}
                     {...register("cost")}
                     placeholder="Production cost"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -142,7 +146,7 @@ const UpdateProduct = () => {
                   <label>Profit Margin %</label>
                   <input
                     type="text"
-                    defaultValue={products.profitMargin}
+                    defaultValue={products?.profitMargin}
                     {...register("profitMargin")}
                     placeholder="Profit margin"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -155,7 +159,7 @@ const UpdateProduct = () => {
                   <label>Discount</label>
                   <input
                     type="text"
-                    defaultValue={products.discount}
+                    defaultValue={products?.discount}
                     {...register("discount")}
                     placeholder="Discount"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
@@ -166,7 +170,7 @@ const UpdateProduct = () => {
                   <label>Product Details</label>
                   <textarea
                     name="details"
-                    defaultValue={products.productDetails}
+                    defaultValue={products?.productDetails}
                     {...register("details")}
                     className="textarea textarea-bordered mt-2  w-full md:w-[390px] lg:w-[390px]"
                     placeholder="Bio"

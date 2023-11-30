@@ -25,7 +25,7 @@ const Reviews = () => {
         details={"Customers Review"}
       ></SectionHeading>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
         {reviews.map((review) => (
           <div
             key={review.id}

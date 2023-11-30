@@ -25,6 +25,7 @@ import AuthorizationErrorPage from "../pages/ErrorPage/AuthorizationErrorPage";
 import AmPrivateRoute from "./AmPrivateRoute";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import ManagerPrivateRoute from "./ManagerPrivateRoute";
+import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 
 const Route = createBrowserRouter([
     {
@@ -83,6 +84,11 @@ const Route = createBrowserRouter([
             {
                 path: 'adminSalesSummary',
                 element : <AdminPrivateRoute><AdminSalesSummary></AdminSalesSummary></AdminPrivateRoute>
+            },
+
+            {
+                path : 'allUsers',
+                element : <AdminPrivateRoute><AllUsers></AllUsers></AdminPrivateRoute>
             },
 
             {

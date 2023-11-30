@@ -3,6 +3,7 @@ import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
 const useProducts = () => {
+    
     const axiosSecure = useAxiosSecure();
 
     const {user} = useAuth();

@@ -1,4 +1,5 @@
 import useShops from "../../../hooks/useShops";
+import { MdEmail } from "react-icons/md";
 
 const ManageShop = () => {
   const [shops] = useShops();
@@ -51,7 +52,7 @@ const ManageShop = () => {
                   <td>{product.shopInfo}</td>
 
                   <th>
-                    <p className="text-blue-500 cursor-pointer">Check Mail</p>
+                    <p className="text-blue-500 cursor-pointer flex justify-center items-center gap-2">Check Mail <MdEmail className="text-xl"></MdEmail></p>
                   </th>
                 </tr>
               ))}
@@ -59,6 +60,7 @@ const ManageShop = () => {
           </table>
         </div>
       </div>
+      
     </div>
   );
 };

@@ -97,6 +97,7 @@ const AddProduct = () => {
                   });
                  }
                  reset();
+                 navigate('/dashboard/productManagement')
               })
              }
            })
