@@ -1,9 +1,9 @@
-
+import offers from "../../assets/offers/4439734_2367900.jpg"
 
 const Offers = () => {
     return (
         <div>
-            <h1>This is offer</h1>
+            <img src={offers} alt="" />
         </div>
     );
 };
