@@ -50,7 +50,7 @@ const CreateStore = () => {
             });
           }
           reset();
-          navigate('/dashboard/shopManager')
+          navigate('/dashboard/productManagement')
           
         })
 

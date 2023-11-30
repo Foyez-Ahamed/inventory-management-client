@@ -67,7 +67,7 @@ const DashboardLayout = () => {
                   >
                     {" "}
                     <MdManageAccounts className="text-xl"></MdManageAccounts>{" "}
-                    System Admin
+                    Admin Profile
                   </NavLink>
                 </li>
 
@@ -113,7 +113,7 @@ const DashboardLayout = () => {
                   >
                     {" "}
                     <MdManageAccounts className="text-xl"></MdManageAccounts>{" "}
-                    Shop Manager
+                    Manager Profile
                   </NavLink>
                 </li>
 

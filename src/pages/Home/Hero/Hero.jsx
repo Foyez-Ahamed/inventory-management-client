@@ -29,6 +29,7 @@ const Hero = () => {
 
         <div
           className="flex-1"
+          
           data-aos="fade-down"
           data-aos-easing="linear"
           data-aos-duration="1500"

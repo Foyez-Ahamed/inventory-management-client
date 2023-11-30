@@ -21,6 +21,8 @@ import AddProduct from "../pages/Dashboard/ProductManagement/AddProduct";
 import Subscription from "../pages/Dashboard/ProductManagement/Subscription";
 import UpdateProduct from "../pages/Dashboard/ProductManagement/UpdateProduct";
 import Checkout from "../pages/Dashboard/ProductManagement/Checkout";
+import AuthorizationErrorPage from "../pages/ErrorPage/AuthorizationErrorPage";
+import AmPrivateRoute from "./AmPrivateRoute";
 
 const Route = createBrowserRouter([
     {
@@ -51,13 +53,19 @@ const Route = createBrowserRouter([
             {
                 path : 'login',
                 element : <Login></Login>
+            },
+
+            {
+                path : 'authorizationError',
+                element : <AuthorizationErrorPage></AuthorizationErrorPage>
             }
+
         ]
     },
 
     {
         path:'dashboard',
-        element : <DashboardLayout></DashboardLayout>,
+        element : <AmPrivateRoute><DashboardLayout></DashboardLayout></AmPrivateRoute>,
         children:[
 
             {

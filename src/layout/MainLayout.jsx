@@ -8,7 +8,7 @@ const MainLayout = () => {
 
     const location = useLocation();
 
-    const withoutNavFooter = location.pathname.includes('register') || location.pathname.includes('login');
+    const withoutNavFooter = location.pathname.includes('register') || location.pathname.includes('login') || location.pathname.includes('authorizationError')
 
 
     return (

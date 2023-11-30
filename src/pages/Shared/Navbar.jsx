@@ -39,23 +39,24 @@ const Navbar = () => {
         <li className="text-[16px]  font-medium ">Home</li>
       </NavLink>
 
-      <NavLink
-        to="/createStore"
-        className={({ isActive, isPending }) =>
-          isActive ? "text-[#B68C5A] " : isPending ? "pending" : ""
-        }
-      >
-        <li className="text-[16px] font-medium ml-4">Create Store</li>
-      </NavLink>
+     {
+       isManager ||  <NavLink
+       to="/createStore"
+       className={({ isActive, isPending }) =>
+         isActive ? "text-[#B68C5A] " : isPending ? "pending" : ""
+       }
+     >
+       <li className="text-[16px] font-medium ml-4">Create Store</li>
+     </NavLink>
+     }
 
-      <NavLink
-        to="/watchDemo"
-        className={({ isActive, isPending }) =>
-          isActive ? "text-[#B68C5A]" : isPending ? "pending" : ""
-        }
+      <a
+        href="https://www.youtube.com/embed/PohSjXM5AW0?si=w1bQlK0fY8e6COQK"
+        target="_blank"
+        rel='noreferrer'
       >
         <li className="text-[16px] font-medium  ml-4">Watch Demo</li>
-      </NavLink>
+      </a>
 
       {!user && (
         <NavLink
@@ -124,7 +125,7 @@ const Navbar = () => {
 
         <div className="navbar-end">
           <div>
-            { user? (
+            {user? (
               <>
                 <div className="dropdown dropdown-end">
                   <label

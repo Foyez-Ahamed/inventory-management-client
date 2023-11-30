@@ -40,7 +40,7 @@ const Login = () => {
      
       reset();
 
-      navigate( location?.state ? location.state : isManager.data ? '/dashboard/shopManager' : '/createStore');
+      navigate( location?.state ? location.state : isManager.data ? '/dashboard/productManagement' : '/createStore');
 
       toast.success('Login successfully')
 
