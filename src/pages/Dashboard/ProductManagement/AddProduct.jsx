@@ -24,7 +24,7 @@ const AddProduct = () => {
   const axiosSecure = useAxiosSecure();
   
   useEffect(() => {
-     axiosSecure.get(`http://localhost:5000/api/v1/getUsers/${user?.email}`)
+     axiosSecure.get(`https://king-gallery-server.vercel.app/api/v1/getUsers/${user?.email}`)
      .then(res => {
        setManager(res.data)
      })
