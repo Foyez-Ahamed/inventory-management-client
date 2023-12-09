@@ -18,7 +18,9 @@
 
 
 ## Technologies Used:
-- Javascript, React, tailwind css, express.js, node.js, mongodb, firebase authentication.
+- ### Frontend : Javascript, React, tailwind css, Firebase
+- ### Backend : node.js, express.js, Jwt token access
+- ### Database : Mongodb
 
 <br>
 <br>
