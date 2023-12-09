@@ -108,7 +108,7 @@ const Route = createBrowserRouter([
             {
                 path : 'updateProduct/:id',
                 element : <ManagerPrivateRoute><UpdateProduct></UpdateProduct></ManagerPrivateRoute>,
-                loader : ({params}) => fetch(`https://king-gallery-server.vercel.app/api/v1/getSingleProduct/${params.id}`)
+                loader : ({params}) => fetch(`http://localhost:5000/api/v1/getSingleProduct/${params.id}`)
             },
 
 

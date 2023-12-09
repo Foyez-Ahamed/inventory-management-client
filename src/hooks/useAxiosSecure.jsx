@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
 
-    baseURL:'https://king-gallery-server.vercel.app'
+    baseURL:'http://localhost:5000'
     
 })
 
