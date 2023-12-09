@@ -1,8 +1,7 @@
 1.Project Title: 
 <li>King Gallery (Inventory Management)</li>
 
-2.Project Live Link: 
-<a href=""> https://whimsical-pothos-99bd8a.netlify.app/ </a>
+2.[Project Live Link](https://whimsical-pothos-99bd8a.netlify.app/) 
 
 3.Project Description:
 <li>Inventory Management Implement project. Its a full stack website</li>
