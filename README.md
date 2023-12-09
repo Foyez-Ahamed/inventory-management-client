@@ -1,10 +1,10 @@
-## Project Title: 
-- King Gallery (Inventory Management)
+## Project Name & Type : 
+- King Gallery (Inventory Management System)
 
-## [Project Live Link](https://whimsical-pothos-99bd8a.netlify.app/) 
+### [Live Link](https://whimsical-pothos-99bd8a.netlify.app/) 
 
 ## Project Description:
-- Inventory Management Implement project. Its a full stack website
+- Inventory Management system Implement project. Its a full stack website.
 
 ## Features:
 - Store creation and management.<br>
@@ -18,5 +18,5 @@
 
 
 ## Technologies Used:
-- Javascript, React, tailwind css, express.js, node.js, mongodb firebase authentication.
+- Javascript, React, tailwind css, express.js, node.js, mongodb, firebase authentication.
 
