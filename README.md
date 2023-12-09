@@ -1,7 +1,11 @@
 ## Project Title: 
 -- King Gallery (Inventory Management)
 
+<<<<<<< HEAD
 ## [Project Live Link](https://whimsical-pothos-99bd8a.netlify.app/) 
+=======
+2.[Project Live Link](https://whimsical-pothos-99bd8a.netlify.app/) 
+>>>>>>> d15df8eaef6bcc451c9754ae7e29b39bce4de898
 
 ## Project Description:
 -- Inventory Management Implement project. Its a full stack website
