@@ -4,7 +4,7 @@
 ### [Live Link](https://whimsical-pothos-99bd8a.netlify.app/) 
 
 ## Project Description:
-- Inventory Management system Implement project. Its a full stack website.
+- Inventory Management System with user roles (manager/admin). Users create/manage shops, handle product CRUD operations. Admins gain insights into all user shops and track overall income. Streamlining business processes with role-based functionalities.
 
 ## Features:
 - Store creation and management.<br>
