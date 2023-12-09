@@ -20,5 +20,18 @@
 ## Technologies Used:
 - Javascript, React, tailwind css, express.js, node.js, mongodb, firebase authentication.
 
+<br>
+<br>
+<br>
 
+## ScreenShorts 
+<a href="https://whimsical-pothos-99bd8a.netlify.app/" target="_blank">
+  <img src="https://raw.githubusercontent.com/Foyez-Ahamed/inventory-management-client/main/src/assets/readmeScreenshort/screencapture-whimsical-pothos-99bd8a-netlify-app-2023-12-09-16_22_46.png" style="width: 50%; height: auto;" alt="Website demo">
+
+  <img src="https://raw.githubusercontent.com/Foyez-Ahamed/inventory-management-client/main/src/assets/readmeScreenshort/screencapture-whimsical-pothos-99bd8a-netlify-app-createStore-2023-12-09-16_21_59.png" style="width: 100%; height: auto;" alt="Website demo">
+
+  <img src="https://raw.githubusercontent.com/Foyez-Ahamed/inventory-management-client/main/src/assets/readmeScreenshort/screencapture-whimsical-pothos-99bd8a-netlify-app-dashboard-allUsers-2023-12-09-16_23_14.png" style="width: 100%; height: auto;" alt="Website demo">
+
+  <img src="https://raw.githubusercontent.com/Foyez-Ahamed/inventory-management-client/main/src/assets/readmeScreenshort/screencapture-whimsical-pothos-99bd8a-netlify-app-dashboard-manageShop-2023-12-09-16_22_28.png" style="width: 100%; height: auto;" alt="Website demo">
+</a>
 
